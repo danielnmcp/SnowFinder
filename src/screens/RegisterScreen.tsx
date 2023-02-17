@@ -1,4 +1,5 @@
 import {Button, TextInput} from '@react-native-material/core';
+import { useNavigation } from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {connect} from 'react-redux';
@@ -23,10 +24,11 @@ interface ReduxProps {
 const RegisterScreen = ({register, token}: ReduxProps) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const navigation = useNavigation();
 
   useEffect(() => {
     if (token) {
-      //Add navigation here
+        navigation.navigate("FiltersScreen")
     }
   }, [token]);
 
@@ -62,10 +64,7 @@ const RegisterScreen = ({register, token}: ReduxProps) => {
         }
         style={{marginTop: 60}}
       />
-      {
-        //add navigation to login screen Onpress
-      }
-      <TouchableOpacity onPress={() => {}}>
+      <TouchableOpacity onPress={() => {navigation.navigate("LoginScreen")}}>
         <Text style={{fontSize: 13, marginTop: 20}}>
           Already have an account? Login instead...
         </Text>
