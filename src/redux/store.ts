@@ -31,6 +31,7 @@ export const store = configureStore({
   middleware:[sagaMiddleware],
 }
 );
+export type Redux = ReturnType<typeof persistedReducer>;
 
 export const persistor = persistStore(store);
 sagaMiddleware.run(rootSaga);
