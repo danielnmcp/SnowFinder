@@ -21,6 +21,8 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./src/redux/store";
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import LoginScreen from './src/screens/LoginScreen';
+import RegisterScreen from './src/screens/RegisterScreen';
 
 const Section: React.FC<
   PropsWithChildren<{
@@ -57,17 +59,18 @@ const App = () => {
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    flex: 1
   };
 
   return (
-    <Provider store={store}>
+    <Provider store={store} >
     <PersistGate loading={null} persistor={persistor}>
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <Text>App</Text>
+      <RegisterScreen />
     </SafeAreaView>
     </PersistGate>
     </Provider>
