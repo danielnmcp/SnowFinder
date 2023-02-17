@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "11710989618",
+    "project_id": "skifinder-611bb",
+    "storage_bucket": "skifinder-611bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:11710989618:android:52fdc4e3dd7c7bea4a032b",
+        "android_client_info": {
+          "package_name": "com.snowfinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "11710989618-r56mtj7a7sv9ag932se2rdou3n89bpk3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCb6qDlEmq0kl-sFaZjWVcLVm1d5mGGxlQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "11710989618-r56mtj7a7sv9ag932se2rdou3n89bpk3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
