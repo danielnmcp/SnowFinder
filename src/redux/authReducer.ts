@@ -1,25 +1,42 @@
+import {LOGIN, LOGOUT, REGISTER} from './actionTypes';
+
 const INITIAL_STATE: InitialStateType = {
-    authId: null,
-    userDetails: null,
-  };
+  response: '',
+  userId: '',
+  registerError: false,
+  loginSuccess: false,
+  token: null,
+};
 
-  interface InitialStateType {
-    authId: String | null;
-    userDetails: String | null;
+interface InitialStateType {
+  response: string | null;
+  userId: string | null;
+  registerError: boolean | null;
+  loginSuccess: boolean | null;
+  token: string | null;
+}
+
+
+export const authReducer = (state = INITIAL_STATE, action: any) => {
+  switch (action.type) {
+    case LOGIN:
+      var nextState: InitialStateType = {
+        ...state,
+        userId: action.payload.userId,
+        token: action.payload.token,
+      };
+      return nextState;
+    case REGISTER:
+      var nextState: InitialStateType = {
+        ...state,
+        registerError: action.payload.error,
+        userId: action.payload.userId,
+        token: action.payload.token,
+      };
+      return nextState;
+    case LOGOUT:
+      return INITIAL_STATE;
+    default:
+      return state;
   }
-
-const SAVE_ID = "SAVE_ID"
-  
-  export const authReducer = (state = INITIAL_STATE, action:any) => {
-    switch (action.type) {
-      case SAVE_ID:
-        var nextState: InitialStateType = {
-          ...state,
-          authId: action.payload.authId,
-        };
-        return nextState;
-      default:
-        return state;
-    }
-  };
-  
+};

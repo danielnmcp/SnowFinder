@@ -5,20 +5,24 @@ import {connect} from 'react-redux';
 import {
   AuthTypes,
   LoginActionSaga,
-  LOGIN_SAGA,
   RegisterActionSaga,
+  REGISTER_SAGA,
 } from '../redux/actionTypes';
 import {Redux} from '../redux/store';
 
 interface ReduxProps {
-  login: (email: string, pass: string) => void;
+  register: (
+    name: string,
+    surname: string,
+    email: string,
+    password: string,
+  ) => void;
   token: string;
 }
 
-const LoginScreen = ({login, token}: ReduxProps) => {
+const RegisterScreen = ({register, token}: ReduxProps) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  console.log(token);
 
   useEffect(() => {
     if (token) {
@@ -32,7 +36,7 @@ const LoginScreen = ({login, token}: ReduxProps) => {
         WELCOME TO SNOWFINDER
       </Text>
       <Text style={{fontSize: 15, alignSelf: 'center'}}>
-        LOGIN AND FIND YOUR SNOW
+        REGISTER AND GET A COLD WELCOME
       </Text>
       <TextInput
         label="Email"
@@ -52,16 +56,18 @@ const LoginScreen = ({login, token}: ReduxProps) => {
         style={{marginTop: 40}}
       />
       <Button
-        title="LOGIN"
-        onPress={() => login(email, password)}
+        title="REGISTER"
+        onPress={() =>
+          register('mockName', 'mockSurname', email, password)
+        }
         style={{marginTop: 60}}
       />
       {
-        //add navigation to register screen Onpress
+        //add navigation to login screen Onpress
       }
       <TouchableOpacity onPress={() => {}}>
         <Text style={{fontSize: 13, marginTop: 20}}>
-          Don't have an account yet? Register here...
+          Already have an account? Login instead...
         </Text>
       </TouchableOpacity>
     </View>
@@ -76,8 +82,8 @@ const mapStateToProps = (state: Redux) => {
 const mapDispatchToProps = (
   dispatch: (arg0: RegisterActionSaga | AuthTypes | LoginActionSaga) => void,
 ) => ({
-  login: (email: string, password: string) =>
-    dispatch({type: LOGIN_SAGA, payload: {email, password}}),
+  register: (name: string, surname: string, email: string, password: string) =>
+    dispatch({type: REGISTER_SAGA, payload: {name, surname, email, password}}),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterScreen);
