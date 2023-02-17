@@ -17,10 +17,12 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
-import { store, persistor } from "./src/redux/store";
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import {Provider} from 'react-redux';
+import {NavigationContainer} from '@react-navigation/native';
+import {PersistGate} from 'redux-persist/integration/react';
+import {store, persistor} from './src/redux/store';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import MainStackNavigator from './src/navigation/MainStackNavigator';
 
 const Section: React.FC<
   PropsWithChildren<{
@@ -61,15 +63,13 @@ const App = () => {
 
   return (
     <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <Text>App</Text>
-    </SafeAreaView>
-    </PersistGate>
+      <PersistGate loading={null} persistor={persistor}>
+            <StatusBar
+              barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+              backgroundColor={backgroundStyle.backgroundColor}
+            />
+            <MainStackNavigator/>
+      </PersistGate>
     </Provider>
   );
 };
