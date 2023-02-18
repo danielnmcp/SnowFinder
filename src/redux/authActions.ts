@@ -12,7 +12,6 @@ function* loginRequest(action: LoginActionSaga) {
       action.payload.email,
       action.payload.password,
     );
-    console.log(authResponse)
     const token: string = yield auth().currentUser?.getIdToken();
     const payload: any = { userId: authResponse.user.uid, token, error: false };
     yield put({ type: LOGIN, payload });
